@@ -1,5 +1,6 @@
 package com.workshop;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Tictactoe {
@@ -10,6 +11,7 @@ public class Tictactoe {
         char userLetter =chooseUserLetter(userInput);
         char computeLetter =(userLetter == 'X')?'0':'x';
         showBoard(board);
+        int userMove=getUserMove(board,userInput);
     }
     private static char[] createBoard(){
         char[] board=new char[10];
@@ -34,5 +36,17 @@ public class Tictactoe {
                 System.out.println("---------------");
             }
         }
+    }
+    private  static int getUserMove(char[] board,Scanner userInput){
+        Integer [] validCells={1,2,3,4,5,6,7,8,9};
+        while (true){
+            System.out.println("what is your next move?(1-9): ");
+            int index=userInput.nextInt();
+            if(Arrays.asList(validCells).contains(index) && isSpaceFree(board,index) );
+            return index;
+        }
+    }
+    private  static boolean isSpaceFree(char[] board ,int index){
+        return board[index] ==' ';
     }
 }
