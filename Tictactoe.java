@@ -1,9 +1,15 @@
 package com.workshop;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Tictactoe {
+
+    public static final int Head = 0;
+    public static final int Tail = 1;
+
+    public enum Player {USER, COMPUTER}
 
     public static void main(String[] args) {
         char[] board=createBoard();
@@ -14,6 +20,7 @@ public class Tictactoe {
         int userMove=getUserMove(board,userInput);
         makeMove(board,userMove,userLetter);
         showBoard(board);
+        Player player = getWhoStartsFirst();
     }
     private static char[] createBoard(){
         char[] board=new char[10];
@@ -55,5 +62,10 @@ public class Tictactoe {
         boolean spaceFree =isSpaceFree(board,index);
         if(spaceFree)
             board[index]=letter;
+    }
+    private static Player getWhoStartsFirst() {
+        Random random=new Random();
+        int toss = random.nextInt(2);
+        return (toss == Head) ? Player.USER : Player.COMPUTER;
     }
 }
