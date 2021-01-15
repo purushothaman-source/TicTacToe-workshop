@@ -186,6 +186,14 @@ public class Tictactoe {
                     || blockOpponentWinningMove.equals("" + board[1] + board[5]))
                     && board[9] == ' ')
                 index = 9;
+            else if(board[1]==' ')
+                index=1;
+            else if(board[3]==' ')
+                index=3;
+            else if(board[7]==' ')
+                index=7;
+            else if(board[9]==' ')
+                index=9;
             else {
                 Random random = new Random();
                 index = random.nextInt(9) + 1;
