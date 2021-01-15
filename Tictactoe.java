@@ -9,11 +9,12 @@ public class Tictactoe {
     public static final int Head = 0;
     public static final int Tail = 1;
     public static char won;
-    public static char draw='d';
+    public static char draw = 'd';
     static char userLetter;
     static char computerLetter;
 
     public enum Player {USER, COMPUTER}
+
     public static void main(String[] args) {
 
         char[] board = createBoard();
@@ -27,7 +28,7 @@ public class Tictactoe {
                 int userMove = getUserMove(board, userInput);
                 makeMove(board, userMove, userLetter);
                 won = gameStatus(userLetter, board);
-                if(won==userLetter || won==draw){
+                if (won == userLetter || won == draw) {
                     break;
                 }
                 int computermove = getComputerMove(board);
@@ -39,7 +40,7 @@ public class Tictactoe {
                 int computermove = getComputerMove(board);
                 makeMove(board, computermove, computerLetter);
                 won = gameStatus(computerLetter, board);
-                if(won==computerLetter || won==draw){
+                if (won == computerLetter || won == draw) {
                     break;
                 }
                 showBoard(board);
@@ -50,11 +51,11 @@ public class Tictactoe {
             } while ((won != userLetter) && (won != computerLetter) && (won != 'd'));
         }
         System.out.println("");
-        if(won==userLetter)
+        if (won == userLetter)
             System.out.println("Playerwon");
-        else if(won==computerLetter)
+        else if (won == computerLetter)
             System.out.println("Computerwon");
-        else  if(won==draw)
+        else if (won == draw)
             System.out.println("Match drawn");
 
     }
@@ -89,7 +90,7 @@ public class Tictactoe {
             System.out.println("what is your next move?(1-9): ");
             int index = userInput.nextInt();
             if (Arrays.asList(validCells).contains(index) && isSpaceFree(board, index))
-            return index;
+                return index;
             System.out.println("Invalid cell ,Try again");
 
         }
@@ -97,12 +98,59 @@ public class Tictactoe {
 
     private static int getComputerMove(char[] board) {
         Integer[] validCells = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        String checkWinningMove = "" + computerLetter + computerLetter;
+        int index;
         while (true) {
-            Random random = new Random();
-            int index = random.nextInt(9) + 1;
-            System.out.println("computer index : " + index);
-            if (Arrays.asList(validCells).contains(index) && isSpaceFree(board, index))
+            if ((checkWinningMove.equals("" + board[2] + board[3])
+                    || checkWinningMove.equals("" + board[4] + board[7])
+                    || checkWinningMove.equals("" + board[5] + board[9]))
+                    && board[1] == ' ')
+                index = 1;
+            else if ((checkWinningMove.equals("" + board[1] + board[3])
+                    || checkWinningMove.equals("" + board[5] + board[8]))
+                    && board[2] == ' ')
+                index = 2;
+            else if ((checkWinningMove.equals("" + board[1] + board[2])
+                    || checkWinningMove.equals("" + board[6] + board[9])
+                    || checkWinningMove.equals("" + board[5] + board[7]))
+                    && board[3] == ' ')
+                index = 3;
+            else if ((checkWinningMove.equals("" + board[5] + board[6])
+                    || checkWinningMove.equals("" + board[1] + board[7]))
+                    && board[4] == ' ')
+                index = 4;
+            else if ((checkWinningMove.equals("" + board[4] + board[6])
+                    || checkWinningMove.equals("" + board[2] + board[8])
+                    || checkWinningMove.equals("" + board[1] + board[9])
+                    || checkWinningMove.equals("" + board[3] + board[7]))
+                    && board[5] == ' ')
+                index = 5;
+            else if ((checkWinningMove.equals("" + board[4] + board[5])
+                    || checkWinningMove.equals("" + board[3] + board[9]))
+                    && board[6] == ' ')
+                index = 6;
+            else if ((checkWinningMove.equals("" + board[8] + board[9])
+                    || checkWinningMove.equals("" + board[1] + board[4])
+                    || checkWinningMove.equals("" + board[3] + board[5]))
+                    && board[7] == ' ')
+                index = 7;
+            else if ((checkWinningMove.equals("" + board[7] + board[9])
+                    || checkWinningMove.equals("" + board[2] + board[5]))
+                    && board[8] == ' ')
+                index = 8;
+            else if ((checkWinningMove.equals("" + board[7] + board[8])
+                    || checkWinningMove.equals("" + board[3] + board[6])
+                    || checkWinningMove.equals("" + board[1] + board[5]))
+                    && board[9] == ' ')
+                index = 9;
+            else {
+                Random random = new Random();
+                index = random.nextInt(9) + 1;
+            }
+            if (Arrays.asList(validCells).contains(index) && isSpaceFree(board, index)) {
+                System.out.println("computer index : " + index);
                 return index;
+            }
         }
     }
 
@@ -137,10 +185,11 @@ public class Tictactoe {
             return letter;
         else if (true) {
             boolean draw = isDraw(board);
-            if (draw==true)
+            if (draw == true)
                 return 'd';
-        } else{
-            return 'c';}
+        } else {
+            return 'c';
+        }
         return 'q';
     }
 
