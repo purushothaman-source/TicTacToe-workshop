@@ -99,110 +99,113 @@ public class Tictactoe {
     private static int getComputerMove(char[] board) {
         Integer[] validCells = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         String checkWinningMove = "" + computerLetter + computerLetter;
-        String blockOpponentWinningMove=""+userLetter+userLetter;
+        String blockOpponentWinningMove = "" + userLetter + userLetter;
         int index;
-        while (true) {
-            if ((checkWinningMove.equals("" + board[2] + board[3])
-                    || checkWinningMove.equals("" + board[4] + board[7])
-                    || checkWinningMove.equals("" + board[5] + board[9]))
-                    && board[1] == ' ')
-                index = 1;
-            else if ((checkWinningMove.equals("" + board[1] + board[3])
-                    || checkWinningMove.equals("" + board[5] + board[8]))
-                    && board[2] == ' ')
-                index = 2;
-            else if ((checkWinningMove.equals("" + board[1] + board[2])
-                    || checkWinningMove.equals("" + board[6] + board[9])
-                    || checkWinningMove.equals("" + board[5] + board[7]))
-                    && board[3] == ' ')
-                index = 3;
-            else if ((checkWinningMove.equals("" + board[5] + board[6])
-                    || checkWinningMove.equals("" + board[1] + board[7]))
-                    && board[4] == ' ')
-                index = 4;
-            else if ((checkWinningMove.equals("" + board[4] + board[6])
-                    || checkWinningMove.equals("" + board[2] + board[8])
-                    || checkWinningMove.equals("" + board[1] + board[9])
-                    || checkWinningMove.equals("" + board[3] + board[7]))
-                    && board[5] == ' ')
-                index = 5;
-            else if ((checkWinningMove.equals("" + board[4] + board[5])
-                    || checkWinningMove.equals("" + board[3] + board[9]))
-                    && board[6] == ' ')
-                index = 6;
-            else if ((checkWinningMove.equals("" + board[8] + board[9])
-                    || checkWinningMove.equals("" + board[1] + board[4])
-                    || checkWinningMove.equals("" + board[3] + board[5]))
-                    && board[7] == ' ')
-                index = 7;
-            else if ((checkWinningMove.equals("" + board[7] + board[9])
-                    || checkWinningMove.equals("" + board[2] + board[5]))
-                    && board[8] == ' ')
-                index = 8;
-            else if ((checkWinningMove.equals("" + board[7] + board[8])
-                    || checkWinningMove.equals("" + board[3] + board[6])
-                    || checkWinningMove.equals("" + board[1] + board[5]))
-                    && board[9] == ' ')
-                index = 9;
-            else if ((blockOpponentWinningMove.equals("" + board[2] + board[3])
-                    || blockOpponentWinningMove.equals("" + board[4] + board[7])
-                    || blockOpponentWinningMove.equals("" + board[5] + board[9]))
-                    && board[1] == ' ')
-                index = 1;
-            else if ((blockOpponentWinningMove.equals("" + board[1] + board[3])
-                    || blockOpponentWinningMove.equals("" + board[5] + board[8]))
-                    && board[2] == ' ')
-                index = 2;
-            else if ((blockOpponentWinningMove.equals("" + board[1] + board[2])
-                    || blockOpponentWinningMove.equals("" + board[6] + board[9])
-                    || blockOpponentWinningMove.equals("" + board[5] + board[7]))
-                    && board[3] == ' ')
-                index = 3;
-            else if ((blockOpponentWinningMove.equals("" + board[5] + board[6])
-                    || blockOpponentWinningMove.equals("" + board[1] + board[7]))
-                    && board[4] == ' ')
-                index = 4;
-            else if ((blockOpponentWinningMove.equals("" + board[4] + board[6])
-                    || blockOpponentWinningMove.equals("" + board[2] + board[8])
-                    || blockOpponentWinningMove.equals("" + board[1] + board[9])
-                    || blockOpponentWinningMove.equals("" + board[3] + board[7]))
-                    && board[5] == ' ')
-                index = 5;
-            else if ((blockOpponentWinningMove.equals("" + board[4] + board[5])
-                    || blockOpponentWinningMove.equals("" + board[3] + board[9]))
-                    && board[6] == ' ')
-                index = 6;
-            else if ((blockOpponentWinningMove.equals("" + board[8] + board[9])
-                    || blockOpponentWinningMove.equals("" + board[1] + board[4])
-                    || blockOpponentWinningMove.equals("" + board[3] + board[5]))
-                    && board[7] == ' ')
-                index = 7;
-            else if ((blockOpponentWinningMove.equals("" + board[7] + board[9])
-                    || blockOpponentWinningMove.equals("" + board[2] + board[5]))
-                    && board[8] == ' ')
-                index = 8;
-            else if ((blockOpponentWinningMove.equals("" + board[7] + board[8])
-                    || blockOpponentWinningMove.equals("" + board[3] + board[6])
-                    || blockOpponentWinningMove.equals("" + board[1] + board[5]))
-                    && board[9] == ' ')
-                index = 9;
-            else if(board[1]==' ')
-                index=1;
-            else if(board[3]==' ')
-                index=3;
-            else if(board[7]==' ')
-                index=7;
-            else if(board[9]==' ')
-                index=9;
-            else {
-                Random random = new Random();
-                index = random.nextInt(9) + 1;
-            }
-            if (Arrays.asList(validCells).contains(index) && isSpaceFree(board, index)) {
-                System.out.println("computer index : " + index);
-                return index;
-            }
-        }
+
+        if ((checkWinningMove.equals("" + board[2] + board[3])
+                || checkWinningMove.equals("" + board[4] + board[7])
+                || checkWinningMove.equals("" + board[5] + board[9]))
+                && board[1] == ' ')
+            index = 1;
+        else if ((checkWinningMove.equals("" + board[1] + board[3])
+                || checkWinningMove.equals("" + board[5] + board[8]))
+                && board[2] == ' ')
+            index = 2;
+        else if ((checkWinningMove.equals("" + board[1] + board[2])
+                || checkWinningMove.equals("" + board[6] + board[9])
+                || checkWinningMove.equals("" + board[5] + board[7]))
+                && board[3] == ' ')
+            index = 3;
+        else if ((checkWinningMove.equals("" + board[5] + board[6])
+                || checkWinningMove.equals("" + board[1] + board[7]))
+                && board[4] == ' ')
+            index = 4;
+        else if ((checkWinningMove.equals("" + board[4] + board[6])
+                || checkWinningMove.equals("" + board[2] + board[8])
+                || checkWinningMove.equals("" + board[1] + board[9])
+                || checkWinningMove.equals("" + board[3] + board[7]))
+                && board[5] == ' ')
+            index = 5;
+        else if ((checkWinningMove.equals("" + board[4] + board[5])
+                || checkWinningMove.equals("" + board[3] + board[9]))
+                && board[6] == ' ')
+            index = 6;
+        else if ((checkWinningMove.equals("" + board[8] + board[9])
+                || checkWinningMove.equals("" + board[1] + board[4])
+                || checkWinningMove.equals("" + board[3] + board[5]))
+                && board[7] == ' ')
+            index = 7;
+        else if ((checkWinningMove.equals("" + board[7] + board[9])
+                || checkWinningMove.equals("" + board[2] + board[5]))
+                && board[8] == ' ')
+            index = 8;
+        else if ((checkWinningMove.equals("" + board[7] + board[8])
+                || checkWinningMove.equals("" + board[3] + board[6])
+                || checkWinningMove.equals("" + board[1] + board[5]))
+                && board[9] == ' ')
+            index = 9;
+        else if ((blockOpponentWinningMove.equals("" + board[2] + board[3])
+                || blockOpponentWinningMove.equals("" + board[4] + board[7])
+                || blockOpponentWinningMove.equals("" + board[5] + board[9]))
+                && board[1] == ' ')
+            index = 1;
+        else if ((blockOpponentWinningMove.equals("" + board[1] + board[3])
+                || blockOpponentWinningMove.equals("" + board[5] + board[8]))
+                && board[2] == ' ')
+            index = 2;
+        else if ((blockOpponentWinningMove.equals("" + board[1] + board[2])
+                || blockOpponentWinningMove.equals("" + board[6] + board[9])
+                || blockOpponentWinningMove.equals("" + board[5] + board[7]))
+                && board[3] == ' ')
+            index = 3;
+        else if ((blockOpponentWinningMove.equals("" + board[5] + board[6])
+                || blockOpponentWinningMove.equals("" + board[1] + board[7]))
+                && board[4] == ' ')
+            index = 4;
+        else if ((blockOpponentWinningMove.equals("" + board[4] + board[6])
+                || blockOpponentWinningMove.equals("" + board[2] + board[8])
+                || blockOpponentWinningMove.equals("" + board[1] + board[9])
+                || blockOpponentWinningMove.equals("" + board[3] + board[7]))
+                && board[5] == ' ')
+            index = 5;
+        else if ((blockOpponentWinningMove.equals("" + board[4] + board[5])
+                || blockOpponentWinningMove.equals("" + board[3] + board[9]))
+                && board[6] == ' ')
+            index = 6;
+        else if ((blockOpponentWinningMove.equals("" + board[8] + board[9])
+                || blockOpponentWinningMove.equals("" + board[1] + board[4])
+                || blockOpponentWinningMove.equals("" + board[3] + board[5]))
+                && board[7] == ' ')
+            index = 7;
+        else if ((blockOpponentWinningMove.equals("" + board[7] + board[9])
+                || blockOpponentWinningMove.equals("" + board[2] + board[5]))
+                && board[8] == ' ')
+            index = 8;
+        else if ((blockOpponentWinningMove.equals("" + board[7] + board[8])
+                || blockOpponentWinningMove.equals("" + board[3] + board[6])
+                || blockOpponentWinningMove.equals("" + board[1] + board[5]))
+                && board[9] == ' ')
+            index = 9;
+        else if (board[1] == ' ')
+            index = 1;
+        else if (board[3] == ' ')
+            index = 3;
+        else if (board[7] == ' ')
+            index = 7;
+        else if (board[9] == ' ')
+            index = 9;
+        else if (board[2] == ' ')
+            index = 2;
+        else if (board[4] == ' ')
+            index = 4;
+        else if (board[6] == ' ')
+            index = 6;
+        else if (board[8] == ' ')
+            index = 8;
+        else
+            index = 5;
+        System.out.println("computer index : " + index);
+        return index;
     }
 
     private static boolean isSpaceFree(char[] board, int index) {
